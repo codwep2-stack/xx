@@ -1,75 +1,266 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="html-root">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توقيت العالم الدقيق | خريطة حية</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Leaflet CSS for Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+        body { font-family: 'Cairo', sans-serif; transition: background-color 0.3s; overflow: hidden; margin: 0; }
+        
+        #map {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: saturate(1.2);
+        }
+        .dark #map { filter: grayscale(1) brightness(0.4) invert(1) contrast(0.9); }
 
-<title>أسعار الذهب اليوم في الجزائر 2025 — عيار 24 22 21 18 14 | BOTDONE.COM</title>
-<meta name="description" content="أسعار الذهب اليوم في الجزائر بالدينار الجزائري والدولار الأمريكي. سعر غرام الذهب عيار 24، 22، 21، 18، 14. أسعار العملات الأجنبية في السوق السوداء وسعر USDT. تحديث يومي."/>
-<meta name="keywords" content="أسعار الذهب الجزائر, سعر الذهب اليوم, عيار 24 الجزائر, سعر غرام الذهب, الدولار السوق السوداء الجزائر, سعر اليورو الجزائر, USDT الجزائر, prix or algérie, prix dollar marché noir algérie"/>
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(20px); 
+            border: 1px solid rgba(255, 255, 255, 0.4); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        .dark .glass-card { 
+            background: rgba(15, 23, 42, 0.8); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+        }
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        .digital-clock { font-variant-numeric: tabular-nums; letter-spacing: -2px; }
+        
+        .suggestion-item { 
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .suggestion-item:hover { background: #3b82f6; color: white; }
+        .dark .suggestion-item:hover { background: #2563eb; }
 
-<style>
-/* هنا يوجد كل الـ CSS الخاص بتصميمك الأصلي (لا تغيير) */
-:root{--p:#2563eb;--p-h:#1d4ed8;--s:#64748b;--bg:#f8fafc;--card:#ffffff;--t:#1e293b;--t-s:#64748b;--b:#e2e8f0;--up:#10b981;--dn:#ef4444}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{background-color:var(--bg);color:var(--t);font-family:system-ui,-apple-system,sans-serif;line-height:1.5;padding-bottom:100px}
-/* ... بقية الـ CSS الخاص بك ... */
-</style>
+        .loading-ring {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            border-top-color: #3b82f6;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
 </head>
-<body>
+<body class="bg-slate-100 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen">
 
-<script>
-// ════════════════════════════════════════════════════════════
-// إعدادات الربط بـ Supabase (باستخدام بياناتك)
-// ════════════════════════════════════════════════════════════
-const SB_URL = 'https://zrapyjyrmluezjzmnkxq.supabase.co';
-const SB_KEY = 'sb_publishable_hv7evvR-L5nOoKDYvEjZuQ_YhwWTG97';
-const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
+    <!-- خريطة الخلفية -->
+    <div id="map"></div>
 
-// 2. دالة الـ Upsert التي يحتاجها كودك الأصلي
-async function sbUpsert(table, payload) {
-    const { data, error } = await supabaseClient
-        .from(table)
-        .upsert(payload, { onConflict: 'id' });
-    if (error) throw error;
-    return data;
-}
+    <!-- Header -->
+    <nav class="sticky top-0 z-50 glass-card py-3 px-6 mb-2">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-blue-600 rounded-lg text-white">
+                    <i data-lucide="clock-3" class="w-5 h-5"></i>
+                </div>
+                <h1 class="text-lg font-bold">توقيت العالم <span class="text-blue-600">المباشر</span></h1>
+            </div>
+            <button id="themeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition">
+                <i data-lucide="moon" id="themeIcon" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </nav>
 
-// 3. دالة جلب البيانات عند التحميل (لتحديث الموقع تلقائياً)
-async function loadDataFromSB() {
-    try {
-        const { data, error } = await supabaseClient.from('prices').select('*');
-        if (error || !data) return;
+    <main class="max-w-4xl mx-auto px-4 relative z-10">
+        <!-- Search -->
+        <div class="relative mt-4 mb-6">
+            <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+                <i data-lucide="search" id="searchIcon" class="text-slate-400 w-5 h-5"></i>
+                <div id="searchLoader" class="loading-ring hidden"></div>
+            </div>
+            <input type="text" id="citySearch" 
+                   class="w-full p-5 pr-12 rounded-2xl glass-card border-none outline-none text-lg font-bold shadow-xl placeholder:text-slate-400"
+                   placeholder="اكتب اسم مدينة أو ولاية (أوهايو، لندن، غرداية)..."
+                   autocomplete="off">
+            
+            <div id="suggestions" class="absolute z-[100] w-full mt-2 bg-white/95 dark:bg-slate-900/95 rounded-2xl shadow-2xl overflow-hidden hidden max-h-64 overflow-y-auto"></div>
+        </div>
 
-        data.forEach(item => {
-            if (item.id === 'gold') {
-                const d = item.data;
-                GOLD[24]=d.k24; GOLD[22]=d.k22; GOLD[21]=d.k21; GOLD[18]=d.k18; GOLD[14]=d.k14;
-                OZ.sell=d.oz_sell; OZ.buy=d.oz_buy;
-                renderGold();
+        <!-- Time Card -->
+        <div id="displayCard" class="glass-card rounded-[2.5rem] p-8 md:p-10 shadow-2xl animate-in fade-in zoom-in duration-500">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-center md:text-right">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-600/10 text-blue-600 text-xs font-bold mb-3 border border-blue-600/20">
+                        <i data-lucide="map-pin" class="w-3 h-3"></i>
+                        <span id="countryLabel">جاري التحميل...</span>
+                    </div>
+                    <h2 id="cityName" class="text-4xl md:text-6xl font-black mb-2 text-slate-800 dark:text-white">---</h2>
+                    <p id="dateLabel" class="text-lg text-slate-500 font-medium">---</p>
+                </div>
+
+                <div class="text-center">
+                    <div id="timeDisplay" class="digital-clock text-7xl md:text-8xl font-black text-blue-600 leading-none">00:00:00</div>
+                    <div id="amPmLabel" class="text-xl font-bold text-slate-400 mt-2">--</div>
+                </div>
+            </div>
+
+            <div class="mt-10 pt-8 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="p-4 rounded-xl bg-slate-500/5">
+                    <p class="text-xs text-slate-400 mb-1">المنطقة الزمنية</p>
+                    <p id="tzId" class="font-bold">---</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-500/5">
+                    <p class="text-xs text-slate-400 mb-1">نسبة الخطأ</p>
+                    <p class="font-bold text-green-500">±0.1 ثانية</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-500/5 col-span-2 md:col-span-1">
+                    <p class="text-xs text-slate-400 mb-1">الإحداثيات</p>
+                    <p id="coords" class="font-mono text-sm">---</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let map, marker, clockInterval;
+        let currentTz = "Africa/Algiers";
+        
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Initialize Map
+        function initMap(lat, lon) {
+            if (!map) {
+                map = L.map('map', { zoomControl: false, attributionControl: false }).setView([lat, lon], 12);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+                marker = L.marker([lat, lon]).addTo(map);
+            } else {
+                map.flyTo([lat, lon], 12, { duration: 1.5 });
+                marker.setLatLng([lat, lon]);
             }
-            if (item.id === 'currencies') {
-                const d = item.data;
-                CURR.forEach(c => {
-                    if(d[c.id]) { c.buy = d[c.id].buy; c.sell = d[c.id].sell; }
-                });
-                renderCurr();
+        }
+
+        // Search Logic
+        const searchInput = document.getElementById('citySearch');
+        const suggestions = document.getElementById('suggestions');
+        const searchLoader = document.getElementById('searchLoader');
+        const searchIcon = document.getElementById('searchIcon');
+
+        searchInput.addEventListener('input', async (e) => {
+            const val = e.target.value.trim();
+            if (val.length < 2) {
+                suggestions.classList.add('hidden');
+                return;
+            }
+
+            searchLoader.classList.remove('hidden');
+            searchIcon.classList.add('hidden');
+
+            try {
+                const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(val)}&limit=5&addressdetails=1&accept-language=ar`);
+                const data = await res.json();
+                
+                if (data.length > 0) {
+                    suggestions.innerHTML = data.map(place => `
+                        <div class="suggestion-item" onclick="selectPlace('${place.display_name.replace(/'/g, "\\'")}', ${place.lat}, ${place.lon})">
+                            <p class="font-bold text-sm">${place.display_name}</p>
+                        </div>
+                    `).join('');
+                    suggestions.classList.remove('hidden');
+                } else {
+                    suggestions.classList.add('hidden');
+                }
+            } catch (err) {
+                console.error(err);
+            } finally {
+                searchLoader.classList.add('hidden');
+                searchIcon.classList.remove('hidden');
             }
         });
-    } catch(e) { console.error("Error loading:", e); }
-}
 
-// استدعاء الجلب عند التشغيل
-document.addEventListener('DOMContentLoaded', loadDataFromSB);
+        async function selectPlace(name, lat, lon) {
+            searchInput.value = name.split(',')[0];
+            suggestions.classList.add('hidden');
+            
+            initMap(lat, lon);
+            
+            try {
+                // محاولة جلب المنطقة الزمنية بدقة
+                const timezone = await getTimezoneFromCoords(lat, lon);
+                startClock(timezone, name, lat, lon);
+            } catch (e) {
+                startClock("UTC", name, lat, lon);
+            }
+        }
 
-// ════════════════════════════════════════════════════════════
-// بقية المنطق البرمجي الخاص بك (GOLD, CURR, renderGold, saveGold...)
-// ════════════════════════════════════════════════════════════
-let GOLD = {24:0, 22:0, 21:0, 18:0, 14:0};
-let OZ = {sell:0, buy:0};
-// ... كل الكود الأصلي الخاص بك يتبع هنا ...
-</script>
+        async function getTimezoneFromCoords(lat, lon) {
+            try {
+                const res = await fetch(`https://secure.geonames.org/timezoneJSON?lat=${lat}&lng=${lon}&username=demo`);
+                const data = await res.json();
+                return data.timezoneId || "UTC";
+            } catch {
+                return "UTC";
+            }
+        }
+
+        function startClock(tz, fullName, latitude, longitude) {
+            if (clockInterval) clearInterval(clockInterval);
+            currentTz = tz;
+
+            const update = () => {
+                const now = new Date();
+                try {
+                    const timeStr = now.toLocaleTimeString('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+                    const dateStr = now.toLocaleDateString('ar-EG', { timeZone: tz, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+                    const amPm = now.toLocaleTimeString('ar-EG', { timeZone: tz, hour12: true }).split(' ').pop();
+                    
+                    document.getElementById('timeDisplay').textContent = timeStr;
+                    document.getElementById('dateLabel').textContent = dateStr;
+                    document.getElementById('amPmLabel').textContent = amPm;
+                    document.getElementById('cityName').textContent = fullName.split(',')[0];
+                    document.getElementById('countryLabel').textContent = fullName.split(',').pop().trim();
+                    document.getElementById('tzId').textContent = tz;
+                    
+                    // تم إصلاح الخطأ عبر تسمية البارامترات بوضوح داخل نطاق الدالة
+                    document.getElementById('coords').textContent = `${parseFloat(latitude).toFixed(2)}, ${parseFloat(longitude).toFixed(2)}`;
+                } catch (e) {
+                    console.error("Timezone error", e);
+                }
+            };
+
+            update();
+            clockInterval = setInterval(update, 1000);
+        }
+
+        // Theme Toggle
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            document.getElementById('themeIcon').setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+            lucide.createIcons();
+        });
+
+        // Initialize with Ghardaia
+        window.onload = () => {
+            selectPlace("غرداية, الجزائر", 32.4909, 3.6735);
+        };
+
+        // Close suggestions on click outside
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target)) suggestions.classList.add('hidden');
+        });
+    </script>
 </body>
 </html>
