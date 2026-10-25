@@ -1,266 +1,206 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>توقيت العالم الدقيق | خريطة حية</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Leaflet CSS for Maps -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
-        body { font-family: 'Cairo', sans-serif; transition: background-color 0.3s; overflow: hidden; margin: 0; }
-        
-        #map {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            filter: saturate(1.2);
-        }
-        .dark #map { filter: grayscale(1) brightness(0.4) invert(1) contrast(0.9); }
-
-        .glass-card { 
-            background: rgba(255, 255, 255, 0.8); 
-            backdrop-filter: blur(20px); 
-            border: 1px solid rgba(255, 255, 255, 0.4); 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-        .dark .glass-card { 
-            background: rgba(15, 23, 42, 0.8); 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-        }
-
-        .digital-clock { font-variant-numeric: tabular-nums; letter-spacing: -2px; }
-        
-        .suggestion-item { 
-            padding: 15px;
-            cursor: pointer;
-            transition: all 0.2s;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        .suggestion-item:hover { background: #3b82f6; color: white; }
-        .dark .suggestion-item:hover { background: #2563eb; }
-
-        .loading-ring {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(59, 130, 246, 0.3);
-            border-radius: 50%;
-            border-top-color: #3b82f6;
-            animation: spin 1s ease-in-out infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script id="fb-pixel">
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+fbq("init","1207777488222417");
+fbq("track","PageView");
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1207777488222417&ev=PageView&noscript=1"></noscript>
+<title>stoo2 — الرشاش التركي 4 قطع</title>
+<meta name="description" content="الرشاش التركي 4 قطع">
+<meta property="og:title" content="الرشاش التركي 4 قطع">
+<meta property="og:description" content="رشاش يدوي احترافي مناسب للحدائق والغسيل، يعمل بمقبض مريح وخرطوم قابلة للتمديد.">
+<meta property="og:type" content="product">
+<meta property="og:image" content="https://scontent.fogx1-1.fna.fbcdn.net/v/t39.30808-6/862272970_122129101413282357_5395977374196201295_n.jpg?stp=dst-jpg_tt6&amp;cstp=mx800x1000&amp;ctp=s640x640&amp;_nc_cat=105&amp;_nc_map=urlgen_bucketless&amp;ccb=1-7&amp;_nc_sid=127cfc&amp;_nc_ohc=qH9MnjPXulEQ7kNvwEDiCBh&amp;_nc_oc=AdqDpFYwoO7hF3bKtw1JLZJGgWDOM6AWsJO2xIXb4vsqTeWLNBQis6BV9-2OyYYAGdo&amp;_nc_zt=23&amp;_nc_ht=scontent.fogx1-1.fna&amp;_nc_gid=koMSRvG6eOoBZJdiLZp7VQ&amp;_nc_ss=7b2a8&amp;oh=00_AQOeXkh-aSHIYZ9BEBCsinQIIjZm9MVdi01AmpWWO5Bb7g&amp;oe=6AE38483">
+<meta name="theme-color" content="#48AF39">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap">
+<style>:root{--page:#ffffff;--card:#f7f9fb;--line:#dddddd;--ink:#000000;--text:#16202b;--muted:#5c6b7a;--input:#ffffff;--chip:#eef3f8;--accent:#48AF39;--title:#000000;--priced:#0000FF}*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--page);color:var(--text);font:16px/1.7 Tajawal,Tahoma,"Segoe UI",Arial,sans-serif}
+img{max-width:100%;height:auto;display:block}
+button{font:inherit}
+a,button,input,select,textarea,label,summary{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.bar{background:var(--page);color:var(--title);text-align:center;padding:10px 20px;font-size:16px;font-weight:500;line-height:1.6}
+.shell{max-width:1080px;margin:0 auto;padding:0 16px calc(112px + env(safe-area-inset-bottom))}
+.head{display:flex;align-items:center;justify-content:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.logo{font-size:20px;font-weight:700;letter-spacing:.3px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:34px;padding-top:20px;align-items:start}
+.media-col{min-width:0}
+@media (max-width:900px){.hero{grid-template-columns:1fr;gap:16px;padding-top:14px}.media-col{max-width:480px;margin:0 auto;width:100%}}
+h1{font-size:clamp(22px,5.5vw,28px);line-height:1.45;font-weight:700;color:var(--title);margin:0 0 14px}
+.slide{position:relative;aspect-ratio:1/1;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);display:flex}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide.empty{align-items:center;justify-content:center;color:var(--muted);font-size:14px;border:1px dashed var(--line)}
+.gal{display:flex;flex-direction:column;gap:16px}
+.gal figure{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
+.gal img{width:100%;height:auto;display:block}
+.price{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:16px 0 0}
+.price .now{font-size:27px;font-weight:700;color:var(--priced);line-height:1.2}
+.price .cur{font-size:21px;font-weight:700;color:var(--priced)}
+.price .old{font-size:20px;font-weight:700;color:var(--muted);text-decoration:line-through}
+.price .save{background:#444;color:#fff;font-size:12px;font-weight:700;padding:2px 6px;border-radius:12px}
+.badges{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:14px 0 0}
+.badges li{background:var(--chip);border:1px solid var(--line);border-radius:8px;padding:5px 10px;font-size:13px;font-weight:500}
+.card{background:#e9f1ff;background:color-mix(in srgb,var(--priced) 12%,var(--page));border:1px solid var(--ink);border-radius:12px;padding:14px;margin-top:18px;display:flex;flex-direction:column;gap:14px}
+.dark .card{background:#16202e;background:color-mix(in srgb,var(--priced) 18%,#121a22)}
+.card h3{margin:0;font-size:18.7px;font-weight:700;line-height:1.4}
+.card .sub{margin:-8px 0 0;font-size:14px;font-weight:500}
+.field{position:relative;display:block;border:1px solid var(--ink);border-radius:12px;padding:0 0 3px;margin:0;min-width:0;background:var(--input)}
+.field legend{font-size:12.8px;font-weight:500;line-height:1.2;padding:0 14px;margin:0 10px -2px;color:var(--text)}
+.field input,.field select{display:block;width:100%;border:0;background:transparent;color:var(--text);font:inherit;font-size:16px;font-weight:500;padding-block:9px 8px;padding-inline:14px 34px;height:40px;outline:none}
+.field select{-webkit-appearance:none;appearance:none;cursor:pointer}
+.field .ico{position:absolute;inset-inline-end:13px;bottom:15px;width:18px;height:18px;fill:none;stroke:var(--muted);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.field:focus-within{border-color:var(--accent)}
+.field:focus-within legend,.field:focus-within .ico{color:var(--accent);stroke:var(--accent)}
+.field.bad{border-color:#d0342c}
+.field.bad legend{color:#d0342c}
+.buy{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:46px;border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:12px;font-size:16px;font-weight:500;cursor:pointer}
+.buy svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.buy:disabled{opacity:.65;cursor:default}
+.msg{margin-top:12px;padding:12px 14px;border-radius:12px;font-weight:700;display:none;font-size:15px}
+.msg.ok{display:block;background:#e7f7ec;color:#1b5e20;border:1px solid #a5d6a7}
+.msg.no{display:block;background:#fdecec;color:#b71c1c;border:1px solid #ef9a9a}
+.dark .msg.ok{background:#12331d;color:#b6f0c4;border-color:#1f6b36}
+.dark .msg.no{background:#3a1414;color:#f5b7b3;border-color:#7a2b27}
+.fine{font-size:13px;color:var(--muted);margin:10px 0 0;text-align:center}
+.section{margin-top:34px;max-width:760px}
+.section.wide{max-width:960px}
+.section h2{font-size:18px;margin:0 0 12px;font-weight:700}
+.wa{position:fixed;inset-inline-end:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:9;background:#25d366;color:#fff;font-weight:700;font-size:14px;padding:11px 16px;border-radius:999px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.sticky{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 24px);max-width:500px;z-index:8;opacity:0;pointer-events:none;transition:opacity .25s}
+.sticky.show{opacity:1;pointer-events:auto}
+.sticky button{width:100%;height:46px;border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+footer{border-top:1px solid var(--line);margin-top:34px;padding:18px 0 0;text-align:center;font-size:13px;color:var(--muted)}
+@media (max-width:640px){
+  .shell{padding-inline:12px}
+  .bar{padding:9px 14px;font-size:15px}
+  .head{padding:12px 0}
+  .slide{border-radius:14px}
+  .price .now{font-size:30px}
+  .price .cur{font-size:22px}
+  .card{padding:14px 12px;gap:12px}
+  .buy,.sticky button{height:50px;font-size:17px;border-radius:14px}
+  .field input,.field select{height:44px}
+  .section{margin-top:26px}
+  .gal{gap:12px}
+  footer{margin-top:26px}
+}</style>
 </head>
-<body class="bg-slate-100 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen">
-
-    <!-- خريطة الخلفية -->
-    <div id="map"></div>
-
-    <!-- Header -->
-    <nav class="sticky top-0 z-50 glass-card py-3 px-6 mb-2">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="p-2 bg-blue-600 rounded-lg text-white">
-                    <i data-lucide="clock-3" class="w-5 h-5"></i>
-                </div>
-                <h1 class="text-lg font-bold">توقيت العالم <span class="text-blue-600">المباشر</span></h1>
-            </div>
-            <button id="themeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition">
-                <i data-lucide="moon" id="themeIcon" class="w-5 h-5"></i>
-            </button>
-        </div>
-    </nav>
-
-    <main class="max-w-4xl mx-auto px-4 relative z-10">
-        <!-- Search -->
-        <div class="relative mt-4 mb-6">
-            <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
-                <i data-lucide="search" id="searchIcon" class="text-slate-400 w-5 h-5"></i>
-                <div id="searchLoader" class="loading-ring hidden"></div>
-            </div>
-            <input type="text" id="citySearch" 
-                   class="w-full p-5 pr-12 rounded-2xl glass-card border-none outline-none text-lg font-bold shadow-xl placeholder:text-slate-400"
-                   placeholder="اكتب اسم مدينة أو ولاية (أوهايو، لندن، غرداية)..."
-                   autocomplete="off">
-            
-            <div id="suggestions" class="absolute z-[100] w-full mt-2 bg-white/95 dark:bg-slate-900/95 rounded-2xl shadow-2xl overflow-hidden hidden max-h-64 overflow-y-auto"></div>
-        </div>
-
-        <!-- Time Card -->
-        <div id="displayCard" class="glass-card rounded-[2.5rem] p-8 md:p-10 shadow-2xl animate-in fade-in zoom-in duration-500">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <div class="text-center md:text-right">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-600/10 text-blue-600 text-xs font-bold mb-3 border border-blue-600/20">
-                        <i data-lucide="map-pin" class="w-3 h-3"></i>
-                        <span id="countryLabel">جاري التحميل...</span>
-                    </div>
-                    <h2 id="cityName" class="text-4xl md:text-6xl font-black mb-2 text-slate-800 dark:text-white">---</h2>
-                    <p id="dateLabel" class="text-lg text-slate-500 font-medium">---</p>
-                </div>
-
-                <div class="text-center">
-                    <div id="timeDisplay" class="digital-clock text-7xl md:text-8xl font-black text-blue-600 leading-none">00:00:00</div>
-                    <div id="amPmLabel" class="text-xl font-bold text-slate-400 mt-2">--</div>
-                </div>
-            </div>
-
-            <div class="mt-10 pt-8 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 md:grid-cols-3 gap-4">
-                <div class="p-4 rounded-xl bg-slate-500/5">
-                    <p class="text-xs text-slate-400 mb-1">المنطقة الزمنية</p>
-                    <p id="tzId" class="font-bold">---</p>
-                </div>
-                <div class="p-4 rounded-xl bg-slate-500/5">
-                    <p class="text-xs text-slate-400 mb-1">نسبة الخطأ</p>
-                    <p class="font-bold text-green-500">±0.1 ثانية</p>
-                </div>
-                <div class="p-4 rounded-xl bg-slate-500/5 col-span-2 md:col-span-1">
-                    <p class="text-xs text-slate-400 mb-1">الإحداثيات</p>
-                    <p id="coords" class="font-mono text-sm">---</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        let map, marker, clockInterval;
-        let currentTz = "Africa/Algiers";
-        
-        // Initialize Icons
-        lucide.createIcons();
-
-        // Initialize Map
-        function initMap(lat, lon) {
-            if (!map) {
-                map = L.map('map', { zoomControl: false, attributionControl: false }).setView([lat, lon], 12);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-                marker = L.marker([lat, lon]).addTo(map);
-            } else {
-                map.flyTo([lat, lon], 12, { duration: 1.5 });
-                marker.setLatLng([lat, lon]);
-            }
+<body>
+<div class="bar">عرض اليوم — توصيل مجاني فوق8 قطع</div>
+<div class="shell">
+<div class="head"><span class="logo">stoo2</span></div>
+<section class="hero">
+<div class="media-col"><div class="slide"><img src="https://scontent.fogx1-1.fna.fbcdn.net/v/t39.30808-6/862272970_122129101413282357_5395977374196201295_n.jpg?stp=dst-jpg_tt6&amp;cstp=mx800x1000&amp;ctp=s640x640&amp;_nc_cat=105&amp;_nc_map=urlgen_bucketless&amp;ccb=1-7&amp;_nc_sid=127cfc&amp;_nc_ohc=qH9MnjPXulEQ7kNvwEDiCBh&amp;_nc_oc=AdqDpFYwoO7hF3bKtw1JLZJGgWDOM6AWsJO2xIXb4vsqTeWLNBQis6BV9-2OyYYAGdo&amp;_nc_zt=23&amp;_nc_ht=scontent.fogx1-1.fna&amp;_nc_gid=koMSRvG6eOoBZJdiLZp7VQ&amp;_nc_ss=7b2a8&amp;oh=00_AQOeXkh-aSHIYZ9BEBCsinQIIjZm9MVdi01AmpWWO5Bb7g&amp;oe=6AE38483" alt="الرشاش التركي 4 قطع"></div></div>
+<div>
+<h1>الرشاش التركي 4 قطع</h1>
+<div class="price"><span class="now">9 000</span><span class="cur">دج</span>
+<span class="old">12 000 دج</span><span class="save">وفّر 25%</span>
+</div>
+<ul class="badges"><li>توصيل لباب البيت</li><li>الدفع عند التسليم</li><li>ضمان شهر</li></ul>
+<form id="order-form" class="card" novalidate>
+<h3>اطلب منتجاتك</h3>
+<p class="sub">يرجى ملء النموذج أدناه لإتمام عملية الشراء.</p>
+<fieldset class="field"><legend>الاسم الكامل</legend>
+<input id="f-name" name="name" type="text" autocomplete="name" placeholder="أدخل الاسم الكامل هنا"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></fieldset>
+<fieldset class="field"><legend>الولاية</legend>
+<select id="f-wilaya" name="wilaya"><option value="">— اختر الولاية —</option><option value="01 - أدرار">01 - أدرار</option><option value="02 - الشلف">02 - الشلف</option><option value="03 - الأغواط">03 - الأغواط</option><option value="04 - أم البواقي">04 - أم البواقي</option><option value="05 - باتنة">05 - باتنة</option><option value="06 - بجاية">06 - بجاية</option><option value="07 - بسكرة">07 - بسكرة</option><option value="08 - بشار">08 - بشار</option><option value="09 - البليدة">09 - البليدة</option><option value="10 - البويرة">10 - البويرة</option><option value="11 - تمنراست">11 - تمنراست</option><option value="12 - تبسة">12 - تبسة</option><option value="13 - تلمسان">13 - تلمسان</option><option value="14 - تيارت">14 - تيارت</option><option value="15 - تيزي وزو">15 - تيزي وزو</option><option value="16 - الجزائر">16 - الجزائر</option><option value="17 - الجلفة">17 - الجلفة</option><option value="18 - جيجل">18 - جيجل</option><option value="19 - سطيف">19 - سطيف</option><option value="20 - سعيدة">20 - سعيدة</option><option value="21 - سكيكدة">21 - سكيكدة</option><option value="22 - سيدي بلعباس">22 - سيدي بلعباس</option><option value="23 - عنابة">23 - عنابة</option><option value="24 - قالمة">24 - قالمة</option><option value="25 - قسنطينة">25 - قسنطينة</option><option value="26 - المدية">26 - المدية</option><option value="27 - مستغانم">27 - مستغانم</option><option value="28 - المسيلة">28 - المسيلة</option><option value="29 - معسكر">29 - معسكر</option><option value="30 - ورقلة">30 - ورقلة</option><option value="31 - وهران">31 - وهران</option><option value="32 - البيض">32 - البيض</option><option value="33 - إليزي">33 - إليزي</option><option value="34 - برج بوعريريج">34 - برج بوعريريج</option><option value="35 - بومرداس">35 - بومرداس</option><option value="36 - الطارف">36 - الطارف</option><option value="37 - تندوف">37 - تندوف</option><option value="38 - تيسمسيلت">38 - تيسمسيلت</option><option value="39 - الوادي">39 - الوادي</option><option value="40 - خنشلة">40 - خنشلة</option><option value="41 - سوق أهراس">41 - سوق أهراس</option><option value="42 - تيبازة">42 - تيبازة</option><option value="43 - ميلة">43 - ميلة</option><option value="44 - عين الدفلى">44 - عين الدفلى</option><option value="45 - النعامة">45 - النعامة</option><option value="46 - عين تموشنت">46 - عين تموشنت</option><option value="47 - غرداية">47 - غرداية</option><option value="48 - غليزان">48 - غليزان</option><option value="49 - تيميمون">49 - تيميمون</option><option value="50 - برج باجي مختار">50 - برج باجي مختار</option><option value="51 - أولاد جلال">51 - أولاد جلال</option><option value="52 - بني عباس">52 - بني عباس</option><option value="53 - عين صالح">53 - عين صالح</option><option value="54 - عين قزام">54 - عين قزام</option><option value="55 - تقرت">55 - تقرت</option><option value="56 - جانت">56 - جانت</option><option value="57 - المغير">57 - المغير</option><option value="58 - المنيعة">58 - المنيعة</option></select><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg></fieldset>
+<fieldset class="field"><legend>رقم الهاتف</legend>
+<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3h3l1.6 4-2.1 1.5a12.5 12.5 0 0 0 5.5 5.5L16 11.9l4 1.6v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3z"/></svg></fieldset>
+<button class="buy" id="order-buy" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 8h13l-1 11.5h-11z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><span>اشتري الآن</span></button>
+<div class="msg" id="order-msg" role="status" aria-live="polite"></div>
+</form>
+<p class="fine">الدفع نقداً عند استلام الطلب · لا حاجة للدفع المسبق</p>
+</div></section>
+<section class="section wide"><h2>صور إضافية</h2><div class="gal"><figure><img src="https://scontent.fogx1-1.fna.fbcdn.net/v/t39.30808-6/865442977_122129101545282357_4896041285536905992_n.jpg?stp=dst-jpg_tt6&amp;cstp=mx800x1000&amp;ctp=s640x640&amp;_nc_cat=101&amp;_nc_map=urlgen_bucketless&amp;ccb=1-7&amp;_nc_sid=127cfc&amp;_nc_ohc=65ORWKeZuyAQ7kNvwF6mvPr&amp;_nc_oc=AdreeJ-hvZaMk2CdQZ__j67ga9AlFXQB7wU3wNf1EgPsU7LQhW60LlMXPMFt_qamh0I&amp;_nc_zt=23&amp;_nc_ht=scontent.fogx1-1.fna&amp;_nc_gid=Bz36_RafFrmfOYu9rntu4Q&amp;_nc_ss=7b2a8&amp;oh=00_AQPr4HUpe9FyTitm4Rv0cjogZ08QaZVL1vKovrJPam-Ypw&amp;oe=6AE365BD" alt="الرشاش التركي 4 قطع — صورة 1" loading="lazy"></figure><figure><img src="https://scontent.fogx1-1.fna.fbcdn.net/v/t39.30808-6/860977202_122129101755282357_4813697050096237547_n.jpg?stp=dst-jpg_tt6&amp;cstp=mx800x1000&amp;ctp=s640x640&amp;_nc_cat=106&amp;_nc_map=urlgen_bucketless&amp;ccb=1-7&amp;_nc_sid=127cfc&amp;_nc_ohc=PgZeIWjEKN0Q7kNvwEitECI&amp;_nc_oc=Adp-jYaf8fYhXU3OWN8dX5f9nsujuJYnMo_7GC1SoG0toI880KzJZkAcIOlyp1o8spQ&amp;_nc_zt=23&amp;_nc_ht=scontent.fogx1-1.fna&amp;_nc_gid=6bRz7gdrHODwx3ua5HKmew&amp;_nc_ss=7b2a8&amp;oh=00_AQOtn5zUSCo4qrzXWDQXj-QoUkOujao3vn1ArbtZ8f6DjQ&amp;oe=6AE38656" alt="الرشاش التركي 4 قطع — صورة 2" loading="lazy"></figure></div></section>
+<footer>stoo2 · 2026</footer>
+</div>
+<div class="sticky" id="sticky-bar"><button type="button" data-jump>اشتري الآن</button></div>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"الرشاش التركي 4 قطع","description":"رشاش يدوي احترافي مناسب للحدائق والغسيل، يعمل بمقبض مريح وخرطوم قابلة للتمديد.","brand":{"@type":"Brand","name":"stoo2"},"offers":{"@type":"Offer","price":"9000","priceCurrency":"DZD","availability":"https://schema.org/InStock"},"image":["https://scontent.fogx1-1.fna.fbcdn.net/v/t39.30808-6/862272970_122129101413282357_5395977374196201295_n.jpg?stp=dst-jpg_tt6&cstp=mx800x1000&ctp=s640x640&_nc_cat=105&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=qH9MnjPXulEQ7kNvwEDiCBh&_nc_oc=AdqDpFYwoO7hF3bKtw1JLZJGgWDOM6AWsJO2xIXb4vsqTeWLNBQis6BV9-2OyYYAGdo&_nc_zt=23&_nc_ht=scontent.fogx1-1.fna&_nc_gid=koMSRvG6eOoBZJdiLZp7VQ&_nc_ss=7b2a8&oh=00_AQOeXkh-aSHIYZ9BEBCsinQIIjZm9MVdi01AmpWWO5Bb7g&oe=6AE38483","https://scontent.fogx1-1.fna.fbcdn.net/v/t39.30808-6/865442977_122129101545282357_4896041285536905992_n.jpg?stp=dst-jpg_tt6&cstp=mx800x1000&ctp=s640x640&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=65ORWKeZuyAQ7kNvwF6mvPr&_nc_oc=AdreeJ-hvZaMk2CdQZ__j67ga9AlFXQB7wU3wNf1EgPsU7LQhW60LlMXPMFt_qamh0I&_nc_zt=23&_nc_ht=scontent.fogx1-1.fna&_nc_gid=Bz36_RafFrmfOYu9rntu4Q&_nc_ss=7b2a8&oh=00_AQPr4HUpe9FyTitm4Rv0cjogZ08QaZVL1vKovrJPam-Ypw&oe=6AE365BD","https://scontent.fogx1-1.fna.fbcdn.net/v/t39.30808-6/860977202_122129101755282357_4813697050096237547_n.jpg?stp=dst-jpg_tt6&cstp=mx800x1000&ctp=s640x640&_nc_cat=106&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=PgZeIWjEKN0Q7kNvwEitECI&_nc_oc=Adp-jYaf8fYhXU3OWN8dX5f9nsujuJYnMo_7GC1SoG0toI880KzJZkAcIOlyp1o8spQ&_nc_zt=23&_nc_ht=scontent.fogx1-1.fna&_nc_gid=6bRz7gdrHODwx3ua5HKmew&_nc_ss=7b2a8&oh=00_AQOtn5zUSCo4qrzXWDQXj-QoUkOujao3vn1ArbtZ8f6DjQ&oe=6AE38656"]}</script>
+<script>
+var ENDPOINT="https://script.google.com/macros/s/AKfycbyHV1leF5wysyjDT2hN5tnNl4nOwCXg88D_372CznrCsHYLxxVGCrJOxwxcvEFov2Vz/exec";
+var PRODUCT="الرشاش التركي 4 قطع";
+var PRICE="9000 دج";
+var CURRENCY="دج";
+var PIXEL="1207777488222417";
+var PRICEVAL=9000;
+var CURCODE="DZD";
+var BTN_LABEL="اشتري الآن";
+(function(){
+  var form=document.getElementById("order-form");if(!form)return;
+  var msg=document.getElementById("order-msg");
+  var btn=document.getElementById("order-buy");
+  var btnLabel=btn.querySelector("span")||btn;
+  function show(text,ok){msg.textContent=text;msg.className="msg "+(ok?"ok":"no");}
+  function track(ev,params){if(PIXEL&&window.fbq){try{fbq("track",ev,params||{});}catch(e){}}}
+  function field(name){return form.querySelector("[name="+name+"]");}
+  function value(name){var el=field(name);return el?String(el.value||"").trim():"";}
+  function mark(name,bad){var el=field(name);if(!el)return;var box=el.closest(".field");if(box)box.classList.toggle("bad",!!bad);}
+  function phoneOk(v){var d=v.replace(/[^\d+]/g,"").replace(/\+/g,"");return /^0[5-7]\d{8}$/.test(d)||/^[0-9]{9,15}$/.test(d);}
+  var sticky=document.getElementById("sticky-bar");
+  if(sticky){
+    var syncSticky=function(){
+      var r=form.getBoundingClientRect();
+      sticky.classList.toggle("show",r.bottom<innerHeight*0.35||r.top>innerHeight*0.75);
+    };
+    addEventListener("scroll",syncSticky,{passive:true});
+    addEventListener("resize",syncSticky);
+    syncSticky();
+  }
+  document.querySelectorAll("[data-jump]").forEach(function(b){
+    b.addEventListener("click",function(){
+      form.scrollIntoView({behavior:"smooth",block:"center"});
+      var n=field("name");if(n)setTimeout(function(){n.focus();},400);
+    });
+  });
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var data={
+      name:value("name"),wilaya:value("wilaya"),phone:value("phone"),
+      product:PRODUCT,price:PRICE,currency:CURRENCY,qty:"1",
+      page:location.href,at:new Date().toISOString()
+    };
+    var bad=[];
+    if(data.name.length<3){bad.push(["name",1]);}
+    if(!data.wilaya){bad.push(["wilaya",1]);}
+    if(!phoneOk(data.phone)){bad.push(["phone",1]);}
+    if(!ENDPOINT){show("الطلبات غير مرتبطة بجدول Google — راجع صاحب المتجر.",false);return;}
+    if(bad.length){
+      bad.forEach(function(b){mark(b[0],true);});
+      show("راجع الحقول المطلوبة: الاسم الكامل، الولاية، ورقم هاتف صحيح.",false);
+      return;
+    }
+    ["name","wilaya","phone"].forEach(function(n){mark(n,false);});
+    track("InitiateCheckout",{value:PRICEVAL,currency:CURCODE,num_items:1});
+    btn.disabled=true;btnLabel.textContent="جارٍ الإرسال...";
+    var params=new URLSearchParams(data);
+    var opts={method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"},body:params.toString()};
+    fetch(ENDPOINT,Object.assign({},opts,{mode:"cors"}))
+      .then(function(r){return r.text();})
+      .then(function(t){
+        var res={};try{res=JSON.parse(t);}catch(err){}
+        if(res&&res.ok===false){
+          if(res.status==="duplicate"){done(res.message);}
+          else{show(res.message||"تعذر حفظ الطلب، حاول مرة أخرى.",false);reset();}
+          return;
         }
-
-        // Search Logic
-        const searchInput = document.getElementById('citySearch');
-        const suggestions = document.getElementById('suggestions');
-        const searchLoader = document.getElementById('searchLoader');
-        const searchIcon = document.getElementById('searchIcon');
-
-        searchInput.addEventListener('input', async (e) => {
-            const val = e.target.value.trim();
-            if (val.length < 2) {
-                suggestions.classList.add('hidden');
-                return;
-            }
-
-            searchLoader.classList.remove('hidden');
-            searchIcon.classList.add('hidden');
-
-            try {
-                const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(val)}&limit=5&addressdetails=1&accept-language=ar`);
-                const data = await res.json();
-                
-                if (data.length > 0) {
-                    suggestions.innerHTML = data.map(place => `
-                        <div class="suggestion-item" onclick="selectPlace('${place.display_name.replace(/'/g, "\\'")}', ${place.lat}, ${place.lon})">
-                            <p class="font-bold text-sm">${place.display_name}</p>
-                        </div>
-                    `).join('');
-                    suggestions.classList.remove('hidden');
-                } else {
-                    suggestions.classList.add('hidden');
-                }
-            } catch (err) {
-                console.error(err);
-            } finally {
-                searchLoader.classList.add('hidden');
-                searchIcon.classList.remove('hidden');
-            }
-        });
-
-        async function selectPlace(name, lat, lon) {
-            searchInput.value = name.split(',')[0];
-            suggestions.classList.add('hidden');
-            
-            initMap(lat, lon);
-            
-            try {
-                // محاولة جلب المنطقة الزمنية بدقة
-                const timezone = await getTimezoneFromCoords(lat, lon);
-                startClock(timezone, name, lat, lon);
-            } catch (e) {
-                startClock("UTC", name, lat, lon);
-            }
-        }
-
-        async function getTimezoneFromCoords(lat, lon) {
-            try {
-                const res = await fetch(`https://secure.geonames.org/timezoneJSON?lat=${lat}&lng=${lon}&username=demo`);
-                const data = await res.json();
-                return data.timezoneId || "UTC";
-            } catch {
-                return "UTC";
-            }
-        }
-
-        function startClock(tz, fullName, latitude, longitude) {
-            if (clockInterval) clearInterval(clockInterval);
-            currentTz = tz;
-
-            const update = () => {
-                const now = new Date();
-                try {
-                    const timeStr = now.toLocaleTimeString('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-                    const dateStr = now.toLocaleDateString('ar-EG', { timeZone: tz, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-                    const amPm = now.toLocaleTimeString('ar-EG', { timeZone: tz, hour12: true }).split(' ').pop();
-                    
-                    document.getElementById('timeDisplay').textContent = timeStr;
-                    document.getElementById('dateLabel').textContent = dateStr;
-                    document.getElementById('amPmLabel').textContent = amPm;
-                    document.getElementById('cityName').textContent = fullName.split(',')[0];
-                    document.getElementById('countryLabel').textContent = fullName.split(',').pop().trim();
-                    document.getElementById('tzId').textContent = tz;
-                    
-                    // تم إصلاح الخطأ عبر تسمية البارامترات بوضوح داخل نطاق الدالة
-                    document.getElementById('coords').textContent = `${parseFloat(latitude).toFixed(2)}, ${parseFloat(longitude).toFixed(2)}`;
-                } catch (e) {
-                    console.error("Timezone error", e);
-                }
-            };
-
-            update();
-            clockInterval = setInterval(update, 1000);
-        }
-
-        // Theme Toggle
-        document.getElementById('themeToggle').addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            const isDark = document.documentElement.classList.contains('dark');
-            document.getElementById('themeIcon').setAttribute('data-lucide', isDark ? 'sun' : 'moon');
-            lucide.createIcons();
-        });
-
-        // Initialize with Ghardaia
-        window.onload = () => {
-            selectPlace("غرداية, الجزائر", 32.4909, 3.6735);
-        };
-
-        // Close suggestions on click outside
-        document.addEventListener('click', (e) => {
-            if (!searchInput.contains(e.target)) suggestions.classList.add('hidden');
-        });
-    </script>
-</body>
-</html>
+        done(res.message||"تم استلام طلبك بنجاح، سنتصل بك للتأكيد.");
+      })
+      .catch(function(){
+        fetch(ENDPOINT,Object.assign({},opts,{mode:"no-cors"}))
+          .then(function(){done("تم استلام طلبك بنجاح، سنتصل بك للتأكيد.");})
+          .catch(function(){show("تعذر الإرسال — تحقق من الاتصال أو اطلب عبر واتساب.",false);reset();});
+      });
+  });
+  function done(text){show(text,true);track("Purchase",{value:PRICEVAL,currency:CURCODE});form.querySelectorAll("input,select").forEach(function(el){el.disabled=true;});btnLabel.textContent="تم استلام الطلب ✓";}
+  function reset(){btn.disabled=false;btnLabel.textContent=BTN_LABEL;}
+  reset();
+})();
+</script>
+</body></html>
